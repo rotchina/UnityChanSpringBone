@@ -38,6 +38,10 @@ namespace UTJ
         public SpringCapsuleCollider[] capsuleColliders;
         public SpringPanelCollider[] panelColliders;
 
+        // Child Bones
+        public Transform[] ChildBones;
+
+
         public Vector3 CurrentTipPosition { get { return currTipPos; } }
 
         // This should be called by the SpringManager in its Awake function before any updates
@@ -66,6 +70,18 @@ namespace UTJ
         public Vector3 ComputeChildPosition()
         {
             var children = GetValidChildren(transform);
+
+
+
+            if (ChildBones.Length != 0)
+            {
+                if(ChildBones[0] != null)
+                {
+                    children = ChildBones;
+
+                }
+            }
+
             var childCount = children.Count;
 
             if (childCount == 0)
@@ -226,8 +242,8 @@ namespace UTJ
             {
                 var child = parent.GetChild(childIndex);
                 if (child.GetComponent<SpringBonePivot>() == null)
-                {
-                    children.Add(child);
+                    {
+                        children.Add(child);
                 }
             }
             return children;
