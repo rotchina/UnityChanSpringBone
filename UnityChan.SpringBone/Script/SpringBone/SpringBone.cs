@@ -72,16 +72,16 @@ namespace UTJ
             var children = GetValidChildren(transform);
 
 
-
-            if (ChildBones.Length != 0)
-            {
-                if(ChildBones[0] != null)
+            if(ChildBones != null) { 
+                if (ChildBones.Length != 0)
                 {
-                    children = ChildBones;
+                    if(ChildBones[0] != null)
+                    {
+                        children = ChildBones;
 
+                    }
                 }
             }
-
             var childCount = children.Count;
 
             if (childCount == 0)
